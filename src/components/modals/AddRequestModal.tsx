@@ -64,7 +64,7 @@ export default function AddRequestsModal() {
                   {({ remove, push }) => (
                     <React.Fragment>
                       {values.items.map((field, index) => (
-                        <div className="flex gap-2 w-full px-3">
+                        <div key={index} className="flex gap-2 w-full px-3">
                           <Field
                             as={TextInput}
                             {...props}

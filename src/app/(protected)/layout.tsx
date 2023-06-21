@@ -53,7 +53,7 @@ export default function RootLayout({
             {data?.user?.role == "DONOR" ? (
               <>
                 <Navbar.Link as={Link} href="/requests" active={pathname.startsWith("/requests")} className="text-lg">
-                  Requests By Ashram's
+                  {"Requests By Ashram's"}
                 </Navbar.Link>
                 <Navbar.Link
                   as={Link}
@@ -72,7 +72,7 @@ export default function RootLayout({
                   href="/donations"
                   className="text-lg"
                 >
-                  Donations By Donor's
+                  {"Donations By Donor's"}
                 </Navbar.Link>
                 <Navbar.Link active={pathname.startsWith("/my-requests")} as={Link} href="/my-requests" className="text-lg">
                   My requests
