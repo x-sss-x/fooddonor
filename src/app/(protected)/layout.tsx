@@ -1,11 +1,10 @@
 "use client";
 import { Navbar, Button, Avatar, Dropdown, Spinner, Badge } from "flowbite-react";
-import { Imbue } from "next/font/google";
+import { Aclonica } from "next/font/google";
 import Link from "next/link";
-import { useUser } from "../UserProvider";
 import { signOut, useSession } from "next-auth/react";
 
-const logoFont = Imbue({ weight: "700", subsets: ["vietnamese"] });
+const logoFont = Aclonica({weight:"400",subsets:["latin"]})
 
 export default function RootLayout({
   children,
