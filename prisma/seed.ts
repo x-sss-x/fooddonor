@@ -18,7 +18,7 @@ const main = async () => {
         bio: faker.lorem.words(10),
         password: hashedPassword,
         name: faker.person.fullName(),
-        phone:faker.phone.number('+91 ##### #####'),
+        phone: faker.phone.number("+91 ##### #####"),
         image: faker.image.avatarGitHub(),
         role: faker.helpers.arrayElement(["DONOR", "ORG"]),
       },
