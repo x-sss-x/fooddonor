@@ -47,8 +47,10 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  phone         String?
   sessions      Session[]
   Account       Account[]
+  Posts         Posts[]
 
   @@index([id])
   @@map("User")
@@ -67,9 +69,24 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model Posts {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.Uuid
+  type      PostType @default(FOOD)
+  createdAt DateTime @default(dbgenerated("now()")) @db.Timestamptz()
+  List      List[]
+}
 
-model FoodPosts{
-  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  title         String
-  
+enum PostType {
+  FOOD
+  RESOURCE
+}
+
+model List {
+  id       String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Posts    Posts?  @relation(fields: [postsId], references: [id])
+  postsId  String? @db.Uuid
+  name     String
+  quantity String
 }

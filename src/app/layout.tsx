@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={"h-screen w-screen overflow-hidden overflow-y-scroll"}
+        className={"h-screen w-screen overflow-hidden"}
         style={inter.style}
       >
         <Providers>

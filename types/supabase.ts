@@ -78,18 +78,44 @@ export interface Database {
           userId?: string
         }
       }
-      FoodPosts: {
+      List: {
         Row: {
           id: string
-          title: string
+          name: string
+          postsId: string | null
+          quantity: string
         }
         Insert: {
           id?: string
-          title: string
+          name: string
+          postsId?: string | null
+          quantity: string
         }
         Update: {
           id?: string
-          title?: string
+          name?: string
+          postsId?: string | null
+          quantity?: string
+        }
+      }
+      Posts: {
+        Row: {
+          createdAt: string
+          id: string
+          type: Database["public"]["Enums"]["PostType"]
+          userId: string | null
+        }
+        Insert: {
+          createdAt?: string
+          id?: string
+          type?: Database["public"]["Enums"]["PostType"]
+          userId?: string | null
+        }
+        Update: {
+          createdAt?: string
+          id?: string
+          type?: Database["public"]["Enums"]["PostType"]
+          userId?: string | null
         }
       }
       Session: {
@@ -122,6 +148,7 @@ export interface Database {
           image: string | null
           name: string | null
           password: string | null
+          phone: string | null
           role: Database["public"]["Enums"]["Role"]
           username: string | null
         }
@@ -134,6 +161,7 @@ export interface Database {
           image?: string | null
           name?: string | null
           password?: string | null
+          phone?: string | null
           role?: Database["public"]["Enums"]["Role"]
           username?: string | null
         }
@@ -146,6 +174,7 @@ export interface Database {
           image?: string | null
           name?: string | null
           password?: string | null
+          phone?: string | null
           role?: Database["public"]["Enums"]["Role"]
           username?: string | null
         }
@@ -175,6 +204,7 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
+      PostType: "FOOD" | "RESOURCE"
       Role: "DONOR" | "ORG"
     }
     CompositeTypes: {
