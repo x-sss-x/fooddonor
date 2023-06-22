@@ -19,7 +19,7 @@ export const fetchIntialDonations = createAsyncThunk<
   async (_payload, { fulfillWithValue, rejectWithValue }) => {
     try {
       const response = await SupaClient.from("Posts")
-        .select("*,List(*),User(name,username,image,email)")
+        .select("*,List(*),User(name,username,image,email,phone)")
         .eq("type", _payload.type)
         .order("createdAt", { ascending: false })
         .limit(10);
@@ -42,7 +42,7 @@ export const fetchMyDonations = createAsyncThunk<
   async (_payload, { fulfillWithValue, rejectWithValue }) => {
     try {
       const response = await SupaClient.from("Posts")
-        .select("*,List(*),User(name,username,image,email)")
+        .select("*,List(*),User(name,username,image,email,phone)")
         .eq("userId", _payload.id)
         .eq("type", _payload.type)
         .order("createdAt", { ascending: false })

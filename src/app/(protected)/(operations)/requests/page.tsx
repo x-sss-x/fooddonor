@@ -2,9 +2,9 @@
 import DonationCard from "@/components/subcomponents/DonationCard";
 import { DonationsSelector } from "@/store/donations.slice";
 import { useAppSelector } from "@/utils/hooks";
-import { Button } from "flowbite-react";
 import Link from "next/link";
 import React from "react";
+import {  AnimatePresence } from "framer-motion";
 
 export default function MyPosts() {
   const Donations = useAppSelector(DonationsSelector.selectAll);
@@ -18,9 +18,11 @@ export default function MyPosts() {
         </Link>
       </div>
       <div className="grid grid-cols-3 gap-4">
+      <AnimatePresence mode="popLayout">
         {Donations.map((feed) => (
           <DonationCard viewUser key={feed.id} feed={feed} />
         ))}
+        </AnimatePresence>
       </div>
     </div>
   );

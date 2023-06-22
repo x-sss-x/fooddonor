@@ -12,6 +12,8 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { BiDonateHeart } from "react-icons/bi";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const logoFont = Aclonica({ weight: "400", subsets: ["latin"] });
 
@@ -52,7 +54,12 @@ export default function RootLayout({
           <Navbar.Collapse>
             {data?.user?.role == "DONOR" ? (
               <>
-                <Navbar.Link as={Link} href="/requests" active={pathname.startsWith("/requests")} className="text-lg">
+                <Navbar.Link
+                  as={Link}
+                  href="/requests"
+                  active={pathname.startsWith("/requests")}
+                  className="text-lg"
+                >
                   {"Requests By Ashram's"}
                 </Navbar.Link>
                 <Navbar.Link
@@ -74,7 +81,12 @@ export default function RootLayout({
                 >
                   {"Donations By Donor's"}
                 </Navbar.Link>
-                <Navbar.Link active={pathname.startsWith("/my-requests")} as={Link} href="/my-requests" className="text-lg">
+                <Navbar.Link
+                  active={pathname.startsWith("/my-requests")}
+                  as={Link}
+                  href="/my-requests"
+                  className="text-lg"
+                >
                   My requests
                 </Navbar.Link>
               </>
@@ -117,6 +129,7 @@ export default function RootLayout({
         </div>
       </Navbar>
       <div className="h-full w-full overflow-y-scroll overflow-x-hidden">
+        <ToastContainer position="bottom-right" hideProgressBar={true} />
         {children}
       </div>
     </>

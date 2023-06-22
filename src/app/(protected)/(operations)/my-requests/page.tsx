@@ -5,6 +5,7 @@ import { useAppSelector } from "@/utils/hooks";
 import { Button } from "flowbite-react";
 import Link from "next/link";
 import React from "react";
+import { AnimatePresence } from "framer-motion";
 
 export default function MyPosts() {
   const Donations = useAppSelector(DonationsSelector.selectAll);
@@ -12,15 +13,19 @@ export default function MyPosts() {
   return (
     <div className="py-10 w-full">
       <div className="flex justify-between items-center py-4">
-        <h1 className="text-2xl font-semibold text-slate-700">Your Requests Posts</h1>
+        <h1 className="text-2xl font-semibold text-slate-700">
+          Your Requests Posts
+        </h1>
         <Link href={"/add-request"}>
           <Button>Raise Request</Button>
         </Link>
       </div>
       <div className="grid grid-cols-3 gap-4">
-        {Donations.map((feed) => (
-          <DonationCard deletePost requestPost key={feed.id} feed={feed} />
-        ))}
+        <AnimatePresence mode="popLayout">
+          {Donations.map((feed) => (
+            <DonationCard deletePost requestPost key={feed.id} feed={feed} />
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );

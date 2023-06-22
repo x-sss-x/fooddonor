@@ -3,8 +3,36 @@ import { Button } from "flowbite-react";
 import { Aclonica } from "next/font/google";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { motion, Transition, Variants } from "framer-motion";
+
+const container = {
+  hidden: { opacity: 1, scale: 1 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const item: Variants = {
+  hidden: { y: 40, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
+const transition: Transition = {
+  duration: 1.5,
+  ease: "linear",
+};
 
 const thought = Aclonica({ weight: "400", subsets: ["latin"] });
+
+const MotionButton = motion(Button);
 
 export default function Home() {
   const session = useSession();
@@ -25,24 +53,39 @@ export default function Home() {
             className="h-full w-full"
           />
         </video>
-        <div className="absolute w-screen flex flex-col gap-3 items-center justify-center h-screen z-10 bg-[rgba(255,255,255,0.82)]">
-          <h1 className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-t from-teal-600 to-blue-400">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="absolute w-screen flex flex-col gap-3 items-center justify-center h-screen z-10 bg-[rgba(255,255,255,0.82)]"
+        >
+          <motion.h1
+            transition={transition}
+            variants={item}
+            className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-t from-teal-600 to-blue-400"
+          >
             Donate Excess Food
-          </h1>
-          <p
+          </motion.h1>
+          <motion.p
+            transition={transition}
+            variants={item}
             className="p-3 text-2xl text-slate-600"
             style={thought.style}
-          >{`" Don't waste food. someone is sleeping on an empty stomach "`}</p>
+          >{`" Don't waste food. someone is sleeping on an empty stomach "`}</motion.p>
           {data?.user?.role == "ORG" ? (
             <Link href={data?.user?.id ? "/my-requests" : "/sign-in"}>
-              <Button size={"lg"}>Raise Request Now</Button>
+              <MotionButton transition={transition} variants={item} size={"lg"}>
+                Raise Request Now
+              </MotionButton>
             </Link>
           ) : (
             <Link href={data?.user?.id ? "/my-posts" : "/sign-in"}>
-              <Button size={"lg"}>Donate Now</Button>
+              <MotionButton transition={transition} variants={item} size={"lg"}>
+                Donate Now
+              </MotionButton>
             </Link>
           )}
-        </div>
+        </motion.div>
       </div>
     </main>
   );
