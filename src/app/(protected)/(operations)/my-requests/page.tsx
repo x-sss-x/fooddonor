@@ -21,9 +21,9 @@ export default function MyPosts() {
         </Link>
       </div>
       <div className="grid grid-cols-3 gap-4">
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence presenceAffectsLayout initial={false}>
           {Donations.map((feed) => (
-            <DonationCard deletePost requestPost key={feed.id} feed={feed} />
+            <DonationCard deletePost requestPost key={"my-posts-"+feed.id} feed={feed} />
           ))}
         </AnimatePresence>
       </div>

@@ -57,7 +57,7 @@ export default function DonationCard({
 
   return (
     <motion.div
-      layout
+      layout={false}
       initial={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ type: "tween", duration: 0.2 }}

@@ -18,11 +18,9 @@ export default function MyPosts() {
         <Link href={"/add-donation"}>{/* <Button>Donate Food</Button> */}</Link>
       </div>
       <div className="grid grid-cols-3 gap-4">
-        <AnimatePresence mode="popLayout" key={"donations"}>
           {Donations.map((feed) => (
             <DonationCard viewUser key={"donations-"+feed.id} feed={feed} />
           ))}
-        </AnimatePresence>
       </div>
     </div>
   );

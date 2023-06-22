@@ -21,7 +21,6 @@ export default function MyPosts() {
         </Link>
       </div>
       <div className="grid grid-cols-3 gap-4">
-        <AnimatePresence mode="popLayout" key={"my-requests"}>
           {Donations.map((feed) => (
             <DonationCard
               key={"my-posts-"+feed.id}
@@ -29,7 +28,6 @@ export default function MyPosts() {
               feed={feed}
             />
           ))}
-        </AnimatePresence>
       </div>
     </div>
   );
